@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5.5rem 0 3rem;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 3rem 0 2rem;
+  }
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  font-size: 2.5rem;
+  letter-spacing: 1rem;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+.icon-container {
+  cursor: pointer;
+}
+
+.display-none {
+  display: none;
+}

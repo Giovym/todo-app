@@ -1,0 +1,184 @@
+import React, { useState, useEffect } from "react";
+
+import styles from "./ListItem.module.css";
+import { ReactComponent as ReactCross } from "../../images/icon-cross.svg";
+
+const FILTER_MAP = {
+  All: () => true,
+  Active: (item) => !item.isChecked,
+  Completed: (item) => item.isChecked,
+};
+
+const FILTER_NAMES = Object.keys(FILTER_MAP);
+
+const ListItem = (props) => {
+  const [currentFilter, setCurrentFilter] = useState(FILTER_NAMES[0]);
+
+  const filteredList = props.list.filter(FILTER_MAP[currentFilter]);
+
+  const [n, setN] = useState(6);
+
+  const [allButtonClicked, setAllButtonClicked] = useState(true);
+  const [activeButtonClicked, setActiveButtonClicked] = useState(false);
+  const [completedButtonClicked, setCompletedButtonClicked] = useState(false);
+
+  const allIsClicked = () => {
+    setCurrentFilter(FILTER_NAMES[0]);
+    setAllButtonClicked(true);
+    setActiveButtonClicked(false);
+    setCompletedButtonClicked(false);
+  };
+
+  const activeIsClicked = () => {
+    setCurrentFilter(FILTER_NAMES[1]);
+    setAllButtonClicked(false);
+    setActiveButtonClicked(true);
+    setCompletedButtonClicked(false);
+  };
+
+  const completedIsClicked = () => {
+    setCurrentFilter(FILTER_NAMES[2]);
+    setAllButtonClicked(false);
+    setActiveButtonClicked(false);
+    setCompletedButtonClicked(true);
+  };
+
+  const deleteItem = (e) => {
+    return props.onDeleteItem(e.target.id);
+  };
+
+  const clearCompleted = () => {
+    return props.onClearCompleted();
+  };
+
+  const checkChecked = (e) => {
+    const index = props.list.findIndex((obj) => obj.id === e.target.id);
+    if (props.list[index].isChecked === false) {
+      props.list[index].isChecked = true;
+    } else {
+      props.list[index].isChecked = false;
+    }
+    setN(() => {
+      return props.list.filter((item) => item.isChecked === false).length;
+    });
+  };
+
+  useEffect(() => {
+    setN(() => {
+      return props.list.filter((item) => item.isChecked === false).length;
+    });
+  });
+
+  return (
+    <React.Fragment>
+      <div className={`${styles.container} ${props.darkMode && styles.dark}`}>
+        <ul>
+          {filteredList.map((item) => (
+            <li
+              className={`${styles.list} ${props.darkMode && styles.dark}`}
+              key={item.id}
+            >
+              <label className={styles.label} htmlFor={item.id}>
+                <input
+                  id={item.id}
+                  type="checkbox"
+                  className={`${styles.checkbox} ${
+                    item.isChecked === true ? styles["checkbox-checked"] : ""
+                  } ${props.darkMode && styles.dark}`}
+                  onChange={checkChecked}
+                ></input>
+                <p
+                  className={`${
+                    item.isChecked === true ? styles["text-checked"] : ""
+                  } ${props.darkMode && styles.dark}`}
+                >
+                  {item.text}
+                </p>
+                <ReactCross
+                  id={item.id}
+                  onClick={deleteItem}
+                  className={styles.cross}
+                />
+              </label>
+            </li>
+          ))}
+        </ul>
+        <footer className={styles.footer}>
+          <span
+            className={`${styles["items-left"]} ${
+              props.darkMode && styles.dark
+            }`}
+          >{`${n} ${n < 2 ? "item" : "items"} left`}</span>
+          <div
+            className={`${styles["filter-container"]} ${
+              props.darkMode && styles.dark
+            }`}
+          >
+            <span
+              className={`${styles.all} ${
+                allButtonClicked ? styles["active-filter"] : ""
+              }`}
+              onClick={allIsClicked}
+            >
+              All
+            </span>
+            <span
+              className={`${styles.active} ${
+                activeButtonClicked ? styles["active-filter"] : ""
+              }`}
+              onClick={activeIsClicked}
+            >
+              Active
+            </span>
+            <span
+              className={`${styles.completed} ${
+                completedButtonClicked ? styles["active-filter"] : ""
+              }`}
+              onClick={completedIsClicked}
+            >
+              Completed
+            </span>
+          </div>
+          <span
+            className={`${styles.clear} ${props.darkMode && styles.dark}`}
+            onClick={clearCompleted}
+          >
+            Clear Completed
+          </span>
+        </footer>
+      </div>
+      <div
+        className={`${styles["filter-container-mobile"]} ${
+          props.darkMode && styles.dark
+        }`}
+      >
+        <span
+          className={`${styles.all} ${
+            allButtonClicked ? styles["active-filter"] : ""
+          }`}
+          onClick={allIsClicked}
+        >
+          All
+        </span>
+        <span
+          className={`${styles.active} ${
+            activeButtonClicked ? styles["active-filter"] : ""
+          }`}
+          onClick={activeIsClicked}
+        >
+          Active
+        </span>
+        <span
+          className={`${styles.completed} ${
+            completedButtonClicked ? styles["active-filter"] : ""
+          }`}
+          onClick={completedIsClicked}
+        >
+          Completed
+        </span>
+      </div>
+    </React.Fragment>
+  );
+};
+
+export default ListItem;
