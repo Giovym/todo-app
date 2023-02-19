@@ -15,7 +15,7 @@
 
 ### Screenshot
 
-![](/todo-app/src/images/screenshot.jpg)
+![](/src/images/screenshot.jpg)
 
 ### Links
 
