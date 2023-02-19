@@ -3,7 +3,6 @@
 ## Table of contents
 
 - [Overview](#overview)
-  - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -12,10 +11,6 @@
 - [Author](#author)
 
 ## Overview
-
-### Screenshot
-
-![](/todo-app/src/images/screenshot.jpg)
 
 ### Links
 
