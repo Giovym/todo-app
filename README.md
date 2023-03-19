@@ -33,7 +33,11 @@
 
 ### What I learned
 
-This was my first project created with React. I was able to put into practice what I have learned in React so far.
+This was my first project created with React. I was able to put into practice what I have learned in React so far, for example the following React Hooks:
+
+- useState
+- useEffect
+- useReducer
 
 ### Continued development
 
