@@ -11,13 +11,13 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   const [list, setList] = useState([
-    { text: "Complete online JavaScript course", id: "i1", isChecked: false },
-    { text: "Jog around the park 3x", id: "i2", isChecked: false },
-    { text: "10 minutes meditation", id: "i3", isChecked: false },
-    { text: "Read for 1 hour", id: "i4", isChecked: false },
-    { text: "Pick up groceries", id: "i5", isChecked: false },
+    { text: "Completare il corso online su TypeScript", id: "i1", isChecked: false },
+    { text: "Andare al cinema a guardare Oppenheimer", id: "i2", isChecked: false },
+    { text: "Editare le foto del viaggio in Islanda", id: "i3", isChecked: false },
+    { text: "Iniziare a leggere un buon libro", id: "i4", isChecked: false },
+    { text: "Iniziare un nuovo progetto", id: "i5", isChecked: false },
     {
-      text: "Complete Todo App on Frontend Mentor",
+      text: "Andare a fare la spesa",
       id: "i6",
       isChecked: false,
     },
