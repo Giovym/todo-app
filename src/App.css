@@ -1,24 +1,3 @@
-.todo-app {
-  background-image: url("./images/bg-desktop-light.jpg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: hsl(236, 33%, 96%);
-  font-family: "Josefin Sans", sans-serif;
-  height: 100vh;
-  overflow: auto;
-}
-
-.todo-app.dark {
-  background-image: url("./images/bg-desktop-dark.jpg");
-  background-color: hsl(235, 21%, 11%);
-}
-
-@media (max-width: 768px) {
-  .todo-app {
-    background-image: url("./images/bg-mobile-light.jpg");
-  }
-
-  .todo-app.dark {
-    background-image: url("./images/bg-mobile-dark.jpg");
-  }
+body {
+  margin: 0;
 }

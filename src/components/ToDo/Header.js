@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React from 'react';
 
-import { ReactComponent as IconMoon } from "../../images/icon-moon.svg";
-import { ReactComponent as IconSun } from "../../images/icon-sun.svg";
+import { useTheme, useThemeUpdate } from '../store/ThemeContext';
 
-import styles from "./Header.module.css";
+import { ReactComponent as IconMoon } from '../../images/icon-moon.svg';
+import { ReactComponent as IconSun } from '../../images/icon-sun.svg';
 
-const Header = (props) => {
-  const darkModeHandle = () => {
-    return props.onDarkMode();
-  };
+import styles from './Header.module.css';
+
+const Header = () => {
+  const darkMode = useTheme();
+  const darkModeHandle = useThemeUpdate();
+  // console.log(darkModeHandle, darkMode);
+
+  // const darkModeHandle = () => {
+  //   setDarkMode((prevDarkMode) => !prevDarkMode);
+  // };
 
   return (
     <header className={styles.header}>
@@ -16,11 +22,11 @@ const Header = (props) => {
       <div>
         <IconMoon
           onClick={darkModeHandle}
-          className={props.darkMode ? styles["display-none"] : ""}
+          className={darkMode ? styles['display-none'] : ''}
         />
         <IconSun
           onClick={darkModeHandle}
-          className={props.darkMode ? "" : styles["display-none"]}
+          className={darkMode ? '' : styles['display-none']}
         />
       </div>
     </header>
