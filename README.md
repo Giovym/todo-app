@@ -38,6 +38,8 @@ This was my first project created with React. I was able to put into practice wh
 - useState
 - useEffect
 - useReducer
+- useContext
+- Custom Hooks
 
 ### Continued development
 
