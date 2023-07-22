@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useTheme } from '../store/ThemeContext';
 
@@ -12,18 +12,6 @@ const FILTER_MAP = {
 };
 
 const FILTER_NAMES = Object.keys(FILTER_MAP);
-
-const reducer = (state, action) => {
-  if (action.type === 'all') {
-    return { all: true, active: false, completed: false };
-  } else if (action.type === 'active') {
-    return { all: false, active: true, completed: false };
-  } else if (action.type === 'completed') {
-    return { all: false, active: false, completed: true };
-  } else {
-    return state;
-  }
-};
 
 const ListItem = (props) => {
   const darkMode = useTheme();
@@ -42,17 +30,23 @@ const ListItem = (props) => {
 
   const allIsClicked = () => {
     setCurrentFilter(FILTER_NAMES[0]);
-    dispatch({ type: 'all' });
+    setAllButtonClicked(true);
+    setActiveButtonClicked(false);
+    setCompletedButtonClicked(false);
   };
 
   const activeIsClicked = () => {
     setCurrentFilter(FILTER_NAMES[1]);
-    dispatch({ type: 'active' });
+    setAllButtonClicked(false);
+    setActiveButtonClicked(true);
+    setCompletedButtonClicked(false);
   };
 
   const completedIsClicked = () => {
     setCurrentFilter(FILTER_NAMES[2]);
-    dispatch({ type: 'completed' });
+    setAllButtonClicked(false);
+    setActiveButtonClicked(false);
+    setCompletedButtonClicked(true);
   };
 
   const deleteItem = (e) => {
@@ -126,7 +120,7 @@ const ListItem = (props) => {
           >
             <span
               className={`${styles.all} ${
-                state.all ? styles['active-filter'] : ''
+                allButtonClicked ? styles['active-filter'] : ''
               }`}
               onClick={allIsClicked}
             >
@@ -134,7 +128,7 @@ const ListItem = (props) => {
             </span>
             <span
               className={`${styles.active} ${
-                state.active ? styles['active-filter'] : ''
+                activeButtonClicked ? styles['active-filter'] : ''
               }`}
               onClick={activeIsClicked}
             >
@@ -142,7 +136,7 @@ const ListItem = (props) => {
             </span>
             <span
               className={`${styles.completed} ${
-                state.completed ? styles['active-filter'] : ''
+                completedButtonClicked ? styles['active-filter'] : ''
               }`}
               onClick={completedIsClicked}
             >
@@ -164,7 +158,7 @@ const ListItem = (props) => {
       >
         <span
           className={`${styles.all} ${
-            state.all ? styles['active-filter'] : ''
+            allButtonClicked ? styles['active-filter'] : ''
           }`}
           onClick={allIsClicked}
         >
@@ -172,7 +166,7 @@ const ListItem = (props) => {
         </span>
         <span
           className={`${styles.active} ${
-            state.active ? styles['active-filter'] : ''
+            activeButtonClicked ? styles['active-filter'] : ''
           }`}
           onClick={activeIsClicked}
         >
@@ -180,7 +174,7 @@ const ListItem = (props) => {
         </span>
         <span
           className={`${styles.completed} ${
-            state.completed ? styles['active-filter'] : ''
+            completedButtonClicked ? styles['active-filter'] : ''
           }`}
           onClick={completedIsClicked}
         >
