@@ -5,14 +5,10 @@ import Header from './components/ToDo/Header';
 import CreateList from './components/ToDo/CreateList';
 import ListItem from './components/ToDo/ListItem';
 import ThemeProvider from './components/store/ThemeContext';
-import { useTheme } from './components/store/ThemeContext';
 
 import './App.css';
 
 function App() {
-  const darkMode = useTheme();
-  console.log(darkMode);
-
   const [list, setList] = useState([
     { text: 'Complete online JavaScript course', id: 'i1', isChecked: false },
     { text: 'Jog around the park 3x', id: 'i2', isChecked: false },
@@ -53,7 +49,6 @@ function App() {
 
   return (
     <ThemeProvider>
-      {/* <main className={`todo-app ${darkMode ? 'dark' : ''}`}> */}
       <Card>
         <Header />
         <CreateList onAddItem={addNewItem} />
@@ -63,7 +58,6 @@ function App() {
           onClearCompleted={clearCompleted}
         />
       </Card>
-      {/* </main> */}
     </ThemeProvider>
   );
 }

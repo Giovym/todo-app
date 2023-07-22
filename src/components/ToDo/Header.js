@@ -10,11 +10,6 @@ import styles from './Header.module.css';
 const Header = () => {
   const darkMode = useTheme();
   const darkModeHandle = useThemeUpdate();
-  // console.log(darkModeHandle, darkMode);
-
-  // const darkModeHandle = () => {
-  //   setDarkMode((prevDarkMode) => !prevDarkMode);
-  // };
 
   return (
     <header className={styles.header}>
